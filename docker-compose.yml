@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: valorant-team-builder
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./valorant_players.db:/app/valorant_players.db
+    restart: unless-stopped

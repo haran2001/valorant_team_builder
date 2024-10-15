@@ -1,0 +1,75 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VALORANT Team Builder</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
+        }
+        .card {
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        .alert {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 class="text-center">VALORANT Team Builder</h2>
+            <p class="text-center">Generate and analyze VALORANT team compositions based on player data.</p>
+
+            <!-- Display Flash Messages -->
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <div class="alert alert-warning" role="alert">
+                  {% for message in messages %}
+                    <div>{{ message }}</div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
+
+            <!-- Team Submission Form -->
+            <form method="POST" action="/">
+                <div class="form-group">
+                    <label for="team_type">Select Team Submission Type:</label>
+                    <select class="form-control" id="team_type" name="team_type" required>
+                        <option value="">-- Select Team Type --</option>
+                        <option value="Professional Team Submission">Professional Team Submission</option>
+                        <option value="Semi-Professional Team Submission">Semi-Professional Team Submission</option>
+                        <option value="Game Changers Team Submission">Game Changers Team Submission</option>
+                        <option value="Mixed-Gender Team Submission">Mixed-Gender Team Submission</option>
+                        <option value="Cross-Regional Team Submission">Cross-Regional Team Submission</option>
+                        <option value="Rising Star Team Submission">Rising Star Team Submission</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="additional_constraints">Additional Constraints (Optional):</label>
+                    <textarea class="form-control" id="additional_constraints" name="additional_constraints" rows="3" placeholder="Enter any additional constraints or leave blank."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Build Team</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript for Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
